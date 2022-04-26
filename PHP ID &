@@ -1,0 +1,22 @@
+<?php
+mysql_connect("localhost","root","password") or die ("could not connect");
+mysql_select_db("Lname") or die ("could not find db!");
+$output = '';
+//collect
+if(isset($_POST['search'])) {
+  $searchq=$_POST['search'];
+  $search = preg_replace("#[^0-9a-z]#i","",$search);
+  
+  $query = mysql_querrry("SELECT * FROM memebers WHERE lastname like '%$searchq%'OR ID'%searchq%'") or die("could not search");
+  $count = mysql_num-rows($query);
+  if($count ==0){
+     $output = 'There was no search results!';
+    }eslse{
+      while($row = mysql_fetch-array ($query)) {
+            $Lname = $row['lastname'];
+            $ID = $ID['ID'];
+            
+            $output .='<div>'.$Lname.' '.$ID.'</div>';
+  
+}
+?>
